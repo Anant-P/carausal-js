@@ -4,9 +4,10 @@ const displayImg = document.getElementById("DisplayImg") // slectes display img 
 const allImgEl = document.querySelectorAll(".thumb") // selects all .thumb className images element
 const srcList = Array.from(allImgEl).map(eachItem => eachItem.src) // create a list of selected images element src(path) list
 
+
 // initial variable
 let currentIndex = 0;
-let intervelId 
+// let intervelId 
 
 
 
@@ -16,51 +17,57 @@ function ShowImg(index) {
 
     // border add remove 
 
-    allImgEl.forEach(eachItem=>eachItem.classList.remove("active"))
-    allImgEl[index].classList.add("active")
+      allImgEl.forEach(eachItem=>eachItem.classList.remove("active"))
+     allImgEl[index].classList.add("active")
 
 }
 
 // image auto play
-function autoChangeImg() {
-    intervelId = setInterval(() => {
+// function autoChangeImg() {
+//     intervelId = setInterval(() => {
 
-        if (currentIndex < srcList.length - 1) {
-            ShowImg(currentIndex += 1)
-        }
-        if (currentIndex === srcList.length - 1) {
-            currentIndex = -1
-        }
-    }, 3000);
-}
+//         if (currentIndex < srcList.length - 1) {
+//             ShowImg(currentIndex += 1)
+//         }
+//         if (currentIndex === srcList.length - 1) {
+//             currentIndex = -1
+//         }
+//     }, 3000);
+// }
 
-autoChangeImg()
+// autoChangeImg()
 
 
 // tubnail click to show img
-allImgEl.forEach((item, index) => {
-    item.addEventListener("click", () => {
-        clearInterval(intervelId)
+allImgEl.forEach((thumb, index) => {
+    thumb.addEventListener("click", () => {
+        // clearInterval(intervelId)
         ShowImg(index)
-        autoChangeImg()
+        // autoChangeImg()
         currentIndex = index
     })
 })
 
 // image button control prev and next
-function prevClick() {
-    if (currentIndex > 0) {
-        clearInterval(intervelId)
-        ShowImg(currentIndex -= 1)
-        autoChangeImg()
-    }
+ function prevClick() {
+     if (currentIndex > 0) {
+//         // clearInterval(intervelId)
+        ShowImg(currentIndex -= 1)   
+//         // autoChangeImg()
+        }}
 
-}
+
+
+
+
+
+
+// }
 function nextClick() {
     if (currentIndex < srcList.length - 1) {
-        clearInterval(intervelId)
-        ShowImg(currentIndex += 1)
-        autoChangeImg()
+//         clearInterval(intervelId)
+       ShowImg(currentIndex += 1)
+//         autoChangeImg()
     }
 
 }
