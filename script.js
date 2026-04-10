@@ -6,13 +6,19 @@ const srcList = Array.from(allImgEl).map(eachItem => eachItem.src) // create a l
 
 // initial variable
 let currentIndex = 0;
-let intervelId = null
+let intervelId 
 
 
 
 // show img to display image
 function ShowImg(index) {
     displayImg.src = srcList[index]
+
+    // border add remove 
+
+    allImgEl.forEach(eachItem=>eachItem.classList.remove("active"))
+    allImgEl[index].classList.add("active")
+
 }
 
 // image auto play

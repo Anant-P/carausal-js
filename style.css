@@ -28,6 +28,7 @@ h1 {
     height: 200px;
     object-fit: cover;
     border: 2px solid orangered;
+    transition: 2s ease;
 }
 
 .thumbnail {
@@ -41,4 +42,14 @@ h1 {
     height: 60px;
     width: 60px;
     border: 1px solid gray;
+    border-radius: 4px ;
+    transition: .5s ease-in-out;
+
+}
+.thumb:hover{
+    transform: scale(1.1);
+}
+.active{
+    border: 3px solid blue;
+    transition: none;
 }
