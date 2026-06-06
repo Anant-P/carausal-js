@@ -62,7 +62,7 @@ allImgEl.forEach((thumb, index) => {
 
 
 
-// }
+}
 function nextClick() {
     if (currentIndex < srcList.length - 1) {
         clearInterval(intervelId)
