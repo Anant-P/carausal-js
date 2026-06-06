@@ -7,7 +7,7 @@ const srcList = Array.from(allImgEl).map(eachItem => eachItem.src) // create a l
 
 // initial variable
 let currentIndex = 0;
-// let intervelId 
+let intervelId 
 
 
 
@@ -22,28 +22,28 @@ function ShowImg(index) {
 
 }
 
-// image auto play
-// function autoChangeImg() {
-//     intervelId = setInterval(() => {
+image auto play
+function autoChangeImg() {
+    intervelId = setInterval(() => {
 
-//         if (currentIndex < srcList.length - 1) {
-//             ShowImg(currentIndex += 1)
-//         }
-//         if (currentIndex === srcList.length - 1) {
-//             currentIndex = -1
-//         }
-//     }, 3000);
-// }
+        if (currentIndex < srcList.length - 1) {
+            ShowImg(currentIndex += 1)
+        }
+        if (currentIndex === srcList.length - 1) {
+            currentIndex = -1
+        }
+    }, 3000);
+}
 
-// autoChangeImg()
+autoChangeImg()
 
 
 // tubnail click to show img
 allImgEl.forEach((thumb, index) => {
     thumb.addEventListener("click", () => {
-        // clearInterval(intervelId)
+        clearInterval(intervelId)
         ShowImg(index)
-        // autoChangeImg()
+        autoChangeImg()
         currentIndex = index
     })
 })
@@ -51,9 +51,9 @@ allImgEl.forEach((thumb, index) => {
 // image button control prev and next
  function prevClick() {
      if (currentIndex > 0) {
-//         // clearInterval(intervelId)
+        clearInterval(intervelId)
         ShowImg(currentIndex -= 1)   
-//         // autoChangeImg()
+        autoChangeImg()
         }}
 
 
@@ -65,9 +65,9 @@ allImgEl.forEach((thumb, index) => {
 // }
 function nextClick() {
     if (currentIndex < srcList.length - 1) {
-//         clearInterval(intervelId)
+        clearInterval(intervelId)
        ShowImg(currentIndex += 1)
-//         autoChangeImg()
+        autoChangeImg()
     }
 
 }
