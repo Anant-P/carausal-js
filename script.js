@@ -1,77 +1,74 @@
+const displayImg = document.getElementById("DisplayImg");
+const allImgEl = document.querySelectorAll(".thumb");
 
+const srcList = Array.from(allImgEl).map(item => item.src);
 
-const displayImg = document.getElementById("DisplayImg") // slectes display img element
-const allImgEl = document.querySelectorAll(".thumb") // selects all .thumb className images element
-const srcList = Array.from(allImgEl).map(eachItem => eachItem.src) // create a list of selected images element src(path) list
-
-
-// initial variable
+// Initial variables
 let currentIndex = 0;
-let intervelId 
+let intervalId;
 
-
-
-// show img to display image
+// Show image
 function ShowImg(index) {
-    displayImg.src = srcList[index]
+    displayImg.src = srcList[index];
 
-    // border add remove 
-
-      allImgEl.forEach(eachItem=>eachItem.classList.remove("active"))
-     allImgEl[index].classList.add("active")
-
+    // Active border
+    allImgEl.forEach(item => item.classList.remove("active"));
+    allImgEl[index].classList.add("active");
 }
 
-image auto play
+// Auto play
 function autoChangeImg() {
-    intervelId = setInterval(() => {
+    intervalId = setInterval(() => {
+        currentIndex++;
 
-        if (currentIndex < srcList.length - 1) {
-            ShowImg(currentIndex += 1)
+        if (currentIndex >= srcList.length) {
+            currentIndex = 0;
         }
-        if (currentIndex === srcList.length - 1) {
-            currentIndex = -1
-        }
+
+        ShowImg(currentIndex);
     }, 3000);
 }
 
-autoChangeImg()
+// Start autoplay
+ShowImg(currentIndex);
+autoChangeImg();
 
-
-// tubnail click to show img
+// Thumbnail click
 allImgEl.forEach((thumb, index) => {
     thumb.addEventListener("click", () => {
-        clearInterval(intervelId)
-        ShowImg(index)
-        autoChangeImg()
-        currentIndex = index
-    })
-})
+        clearInterval(intervalId);
 
-// image button control prev and next
- function prevClick() {
-     if (currentIndex > 0) {
-        clearInterval(intervelId)
-        ShowImg(currentIndex -= 1)   
-        autoChangeImg()
-        }}
+        currentIndex = index;
+        ShowImg(currentIndex);
 
+        autoChangeImg();
+    });
+});
 
+// Previous button
+function prevClick() {
+    clearInterval(intervalId);
 
+    currentIndex--;
 
-
-
-
-}
-function nextClick() {
-    if (currentIndex < srcList.length - 1) {
-        clearInterval(intervelId)
-       ShowImg(currentIndex += 1)
-        autoChangeImg()
+    if (currentIndex < 0) {
+        currentIndex = srcList.length - 1;
     }
 
+    ShowImg(currentIndex);
+    autoChangeImg();
 }
 
-//end
+// Next button
+function nextClick() {
+    clearInterval(intervalId);
 
+    currentIndex++;
 
+    if (currentIndex >= srcList.length) {
+        currentIndex = 0;
+    }
+
+    ShowImg(currentIndex);
+    autoChangeImg();
+}
